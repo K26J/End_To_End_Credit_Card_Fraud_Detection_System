@@ -12,3 +12,23 @@ stages:
       hash: md5
       md5: e5986c63f371b335fceb7778f4ca65c9
       size: 151102405
+  data_splitting:
+    cmd: python src/DataSplit.py
+    deps:
+    - path: data/raw_data.csv
+      hash: md5
+      md5: e5986c63f371b335fceb7778f4ca65c9
+      size: 151102405
+    - path: src/DataSplit.py
+      hash: md5
+      md5: c2d124a3eb6910ba9fe3d92748b7c040
+      size: 1553
+    outs:
+    - path: data/test_data.csv
+      hash: md5
+      md5: a1ff6bf8b6d7fc4e8c661972fb513617
+      size: 30219963
+    - path: data/train_data.csv
+      hash: md5
+      md5: 45a357eb9404a6b91c2840d00c672959
+      size: 120882564

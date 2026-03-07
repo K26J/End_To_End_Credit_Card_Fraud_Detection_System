@@ -5,3 +5,12 @@ stages:
       - src/DataIngetion.py
     outs:
       - data/raw_data.csv
+
+  data_splitting:
+    cmd: python src/DataSplit.py
+    deps:
+      - src/DataSplit.py
+      - data/raw_data.csv
+    outs:
+      - data/train_data.csv
+      - data/test_data.csv
