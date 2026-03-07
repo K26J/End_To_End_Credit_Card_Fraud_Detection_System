@@ -14,3 +14,13 @@ stages:
     outs:
       - data/train_data.csv
       - data/test_data.csv
+      
+  data_preprocessing:
+    cmd: python src/DataFeatureEngineering.py
+    deps:
+      - src/DataFeatureEngineering.py
+      - data/train_data.csv
+      - data/test_data.csv
+    outs:
+      - data/train_data_scaled.csv
+      - data/test_data_scaled.csv

@@ -1,3 +1,5 @@
 /raw_data.csv
 /train_data.csv
 /test_data.csv
+/train_data_scaled.csv
+/test_data_scaled.csv

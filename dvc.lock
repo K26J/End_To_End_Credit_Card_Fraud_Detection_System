@@ -32,3 +32,27 @@ stages:
       hash: md5
       md5: 45a357eb9404a6b91c2840d00c672959
       size: 120882564
+  data_preprocessing:
+    cmd: python src/DataFeatureEngineering.py
+    deps:
+    - path: data/test_data.csv
+      hash: md5
+      md5: a1ff6bf8b6d7fc4e8c661972fb513617
+      size: 30219963
+    - path: data/train_data.csv
+      hash: md5
+      md5: 45a357eb9404a6b91c2840d00c672959
+      size: 120882564
+    - path: src/DataFeatureEngineering.py
+      hash: md5
+      md5: 5517e5111195239437f4fc8657bceb70
+      size: 2120
+    outs:
+    - path: data/test_data_scaled.csv
+      hash: md5
+      md5: 9458935e0a96a8236c2959f815732520
+      size: 30582009
+    - path: data/train_data_scaled.csv
+      hash: md5
+      md5: ebdaa46bc49be23bf799991a38a46825
+      size: 122330011
