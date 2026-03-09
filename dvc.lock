@@ -56,3 +56,30 @@ stages:
       hash: md5
       md5: ebdaa46bc49be23bf799991a38a46825
       size: 122330011
+  model_training:
+    cmd: python src/Model.py
+    deps:
+    - path: data/train_data_scaled.csv
+      hash: md5
+      md5: ebdaa46bc49be23bf799991a38a46825
+      size: 122330011
+    - path: src/Model.py
+      hash: md5
+      md5: 8f24aabf2cb90fd67d2900b87f189e51
+      size: 2516
+    params:
+      params.yaml:
+        baseline_model:
+          input_dim: 29
+          layer_1_nuerons: 64
+          layer_2_nuerons: 32
+          layer_3_nuerons: 16
+          out_layer_nuerons: 1
+          epochs: 10
+          validation_split: 0.2
+        experiment_name: baseline_model
+    outs:
+    - path: models/baseline_model.h5
+      hash: md5
+      md5: b8fa73e303ce33c0ef1156399aad61a9
+      size: 91304

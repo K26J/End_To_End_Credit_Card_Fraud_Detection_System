@@ -7,3 +7,6 @@ seaborn
 fastapi
 uvicorn
 imblearn
+tensorflow
+keras
+tensorboard

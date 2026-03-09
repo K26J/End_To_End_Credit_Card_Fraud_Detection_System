@@ -1,0 +1,11 @@
+experiment_name: "baseline_model" # Options: baseline_model, generlized_base_model, etc.
+
+# 1. baseline_model
+baseline_model:
+  input_dim: 29
+  layer_1_nuerons: 64
+  layer_2_nuerons: 32
+  layer_3_nuerons: 16
+  out_layer_nuerons: 1
+  epochs: 10
+  validation_split: 0.2

@@ -24,3 +24,14 @@ stages:
     outs:
       - data/train_data_scaled.csv
       - data/test_data_scaled.csv
+
+  model_training:
+    cmd: python src/Model.py
+    deps:
+      - src/Model.py
+      - data/train_data_scaled.csv
+    params:
+      - experiment_name
+      - baseline_model
+    outs:
+      - models/baseline_model.h5
