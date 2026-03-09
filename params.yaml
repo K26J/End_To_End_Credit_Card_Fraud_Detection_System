@@ -1,4 +1,4 @@
-experiment_name: "generalized_base_model"
+experiment_name: "class_weights_model"
 
 # 1. baseline_model
 baseline_model:
@@ -28,3 +28,26 @@ generalized_base_model:
     baseline: null               # Correct YAML syntax for None
     restore_best_weights: true   # Correct YAML syntax for True
     start_from_epoch: 6
+
+# 3. class_weights_model
+class_weights_model:
+  input_dim: 29
+  layer_1_neurons: 64
+  layer_2_neurons: 32
+  layer_3_neurons: 16
+  out_layer_neurons: 1
+  epochs: 100
+  validation_split: 0.2
+  early_stopping:
+    monitor: 'val_recall'        # Matches the Keras compile metric
+    min_delta: 0.001
+    patience: 10
+    verbose: 1
+    mode: 'max'
+    baseline: null               # Correct YAML syntax for None
+    restore_best_weights: true   # Correct YAML syntax for True
+    start_from_epoch: 0
+  class_weights: 
+    0: 0.5008661206
+    1: 289.1434010152
+  

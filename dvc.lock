@@ -65,12 +65,11 @@ stages:
       size: 122330011
     - path: src/Model.py
       hash: md5
-      md5: fe72c2c0d4a27b12bcf21df1b9850924
-      size: 3322
+      md5: 011f21a1bef7a123809dc9915d63146f
+      size: 4879
     params:
       params.yaml:
-        experiment_name: generalized_base_model
-        generalized_base_model:
+        class_weights_model:
           input_dim: 29
           layer_1_neurons: 64
           layer_2_neurons: 32
@@ -86,9 +85,13 @@ stages:
             mode: max
             baseline:
             restore_best_weights: true
-            start_from_epoch: 6
+            start_from_epoch: 0
+          class_weights:
+            0: 0.5008661206
+            1: 289.1434010152
+        experiment_name: class_weights_model
     outs:
-    - path: models/generalized_base_model.h5
+    - path: models/class_weights_model.h5
       hash: md5
-      md5: 2f37cec536ca75b12b1df85c67c95c61
+      md5: 683454d30256a909c69852c91dd22b66
       size: 91304

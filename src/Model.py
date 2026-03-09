@@ -67,6 +67,40 @@ def train_model():
           
           model.fit(X_train, y_train, epochs=exp_params["epochs"], validation_split=exp_params["validation_split"], callbacks=[call])
 
+          # ... [Previous baseline and generalized models up here] ...
+
+       elif EXPERIMENT_NAME == "class_weights_model":
+          print(f"Training {EXPERIMENT_NAME} with Class Weights and Early Stopping...")
+          model = Sequential()
+          
+          model.add(Dense(exp_params["layer_1_neurons"], activation='relu', input_dim=exp_params["input_dim"]))
+          model.add(Dense(exp_params["layer_2_neurons"], activation='relu'))
+          model.add(Dense(exp_params["layer_3_neurons"], activation='relu'))
+          model.add(Dense(exp_params["out_layer_neurons"], activation='sigmoid'))
+
+          model.compile(loss='binary_crossentropy', optimizer='Adam', metrics=[tf.keras.metrics.Recall(name='recall'), 'accuracy'])
+
+          es_params = exp_params["early_stopping"]
+          call = EarlyStopping(
+              monitor=es_params['monitor'],
+              min_delta=es_params['min_delta'],
+              patience=es_params['patience'],
+              verbose=1,
+              mode=es_params['mode'],
+              restore_best_weights=es_params['restore_best_weights'],
+              start_from_epoch=es_params['start_from_epoch']
+          )
+          
+          # Notice the new class_weight argument added to model.fit!
+          model.fit(
+              X_train, 
+              y_train, 
+              epochs=exp_params["epochs"], 
+              validation_split=exp_params["validation_split"], 
+              callbacks=[call],
+              class_weight=exp_params["class_weights"] 
+          )
+
        else:
           print(f"The model logic is not written yet: {EXPERIMENT_NAME}")
           return
