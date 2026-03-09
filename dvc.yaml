@@ -1,8 +1,8 @@
 stages:
   data_ingestion:
-    cmd: python src/DataIngetion.py
+    cmd: python src/DataIngestion.py
     deps:
-      - src/DataIngetion.py
+      - src/DataIngestion.py
     outs:
       - data/raw_data.csv
 
@@ -32,6 +32,6 @@ stages:
       - data/train_data_scaled.csv
     params:
       - experiment_name
-      - baseline_model
+      - ${experiment_name}  # <-- DVC dynamically tracks only the active model's params!
     outs:
-      - models/baseline_model.h5
+      - models/${experiment_name}.h5  # <-- DVC dynamically expects only the active model's file!

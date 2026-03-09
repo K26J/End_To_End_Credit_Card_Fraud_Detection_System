@@ -1,9 +1,9 @@
 schema: '2.0'
 stages:
   data_ingestion:
-    cmd: python src/DataIngetion.py
+    cmd: python src/DataIngestion.py
     deps:
-    - path: src/DataIngetion.py
+    - path: src/DataIngestion.py
       hash: md5
       md5: e91aff432f2fa7fa98155f29100f15f5
       size: 914
@@ -65,21 +65,30 @@ stages:
       size: 122330011
     - path: src/Model.py
       hash: md5
-      md5: 8f24aabf2cb90fd67d2900b87f189e51
-      size: 2516
+      md5: fe72c2c0d4a27b12bcf21df1b9850924
+      size: 3322
     params:
       params.yaml:
-        baseline_model:
+        experiment_name: generalized_base_model
+        generalized_base_model:
           input_dim: 29
-          layer_1_nuerons: 64
-          layer_2_nuerons: 32
-          layer_3_nuerons: 16
-          out_layer_nuerons: 1
-          epochs: 10
+          layer_1_neurons: 64
+          layer_2_neurons: 32
+          layer_3_neurons: 16
+          out_layer_neurons: 1
+          epochs: 100
           validation_split: 0.2
-        experiment_name: baseline_model
+          early_stopping:
+            monitor: val_recall
+            min_delta: 0.001
+            patience: 10
+            verbose: 1
+            mode: max
+            baseline:
+            restore_best_weights: true
+            start_from_epoch: 6
     outs:
-    - path: models/baseline_model.h5
+    - path: models/generalized_base_model.h5
       hash: md5
-      md5: b8fa73e303ce33c0ef1156399aad61a9
+      md5: 2f37cec536ca75b12b1df85c67c95c61
       size: 91304
