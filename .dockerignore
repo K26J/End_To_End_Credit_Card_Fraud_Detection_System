@@ -1,0 +1,19 @@
+# Ignore the Windows virtual environment
+.venv/
+venv/
+env/
+
+# Ignore Git and DVC histories
+.git/
+.dvc/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore the Jupyter notebooks (we only need the API in production)
+*.ipynb
+
+# Ignore the massive training datasets (the API only needs the models)
+data/
+*.csv
