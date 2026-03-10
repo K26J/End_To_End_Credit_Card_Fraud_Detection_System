@@ -100,3 +100,66 @@ stages:
       hash: md5
       md5: 87c230cff5eaeafca5c31c11ce71bad1
       size: 92912
+  model_evaluation:
+    cmd: python src/ModelEvaluation.py
+    deps:
+    - path: data/test_data_scaled.csv
+      hash: md5
+      md5: 9458935e0a96a8236c2959f815732520
+      size: 30582009
+    - path: models/baseline_model.h5
+      hash: md5
+      md5: 467656e130d7f6a0be78bc1e8f7caaa9
+      size: 91304
+    - path: models/class_weights_model.h5
+      hash: md5
+      md5: b537a43edd65b6a38c2873d929f65f43
+      size: 91304
+    - path: models/controlled_class_weights_model.h5
+      hash: md5
+      md5: fd5f052d4988c477bf78f93cfb0a0a10
+      size: 92912
+    - path: models/custom_class_weights_model.h5
+      hash: md5
+      md5: c1156fb14eca82dda66c5d028bfa3199
+      size: 91304
+    - path: models/final_model.h5
+      hash: md5
+      md5: 87c230cff5eaeafca5c31c11ce71bad1
+      size: 92912
+    - path: models/generalized_base_model.h5
+      hash: md5
+      md5: df30448c67443d423664951e49b539e5
+      size: 91304
+    - path: src/ModelEvaluation.py
+      hash: md5
+      md5: fdfd1afd83c1acfd2ff0a2375317d22e
+      size: 4230
+    params:
+      params.yaml:
+        experiment_name: final_model
+    outs:
+    - path: reports/baseline_model_metrics.json
+      hash: md5
+      md5: 27f92e95efc97e99db0b58f15fd24155
+      size: 31
+    - path: reports/class_weights_model_metrics.json
+      hash: md5
+      md5: 27f92e95efc97e99db0b58f15fd24155
+      size: 31
+    - path: reports/controlled_class_weights_model_metrics.json
+      hash: md5
+      md5: 27f92e95efc97e99db0b58f15fd24155
+      size: 31
+    - path: reports/custom_class_weights_model_metrics.json
+      hash: md5
+      md5: 27f92e95efc97e99db0b58f15fd24155
+      size: 31
+    - path: reports/final_model_metrics.json
+      hash: md5
+      md5: aae5e2b90eab3217a6989cdfe03b4052
+      size: 125
+    - path: reports/generalized_base_model_metrics.json
+      hash: md5
+      md5: 27f92e95efc97e99db0b58f15fd24155
+      size: 31

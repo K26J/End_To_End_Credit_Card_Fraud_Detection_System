@@ -35,3 +35,24 @@ stages:
       - ${experiment_name}  # <-- DVC dynamically tracks only the active model's params!
     outs:
       - models/${experiment_name}.h5  # <-- DVC dynamically expects only the active model's file!
+
+  model_evaluation:
+    cmd: python src/ModelEvaluation.py
+    deps:
+      - src/ModelEvaluation.py
+      - data/test_data_scaled.csv
+      - models/baseline_model.h5
+      - models/generalized_base_model.h5
+      - models/class_weights_model.h5
+      - models/custom_class_weights_model.h5
+      - models/controlled_class_weights_model.h5
+      - models/final_model.h5
+    params:
+      - experiment_name
+    outs:
+      - reports/baseline_model_metrics.json
+      - reports/generalized_base_model_metrics.json
+      - reports/class_weights_model_metrics.json
+      - reports/custom_class_weights_model_metrics.json
+      - reports/controlled_class_weights_model_metrics.json
+      - reports/final_model_metrics.json
