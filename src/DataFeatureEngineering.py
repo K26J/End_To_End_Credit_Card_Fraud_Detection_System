@@ -3,6 +3,7 @@ import os
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE
+import joblib
 
 # Defining the paths
 PATHS_DICT= {"TRAIN_DATA_INPUT_PATH": os.path.join("data", "train_data.csv" ),
@@ -37,6 +38,13 @@ def process(paths_dict):
         scaler= StandardScaler()
         train_data[features_to_scale]= scaler.fit_transform(train_data[features_to_scale])
         test_data[features_to_scale]= scaler.transform(test_data[features_to_scale])
+
+# ---> NEW: Save the Scaler Artifact <---
+        os.makedirs("models", exist_ok=True)
+        scaler_path = os.path.join("models", "scaler.pkl")
+        joblib.dump(scaler, scaler_path)
+        print(f"Scaler successfully saved to {scaler_path}")
+
 
         # Save the Scaled data
         train_data.to_csv(train_processed_path, index= False)

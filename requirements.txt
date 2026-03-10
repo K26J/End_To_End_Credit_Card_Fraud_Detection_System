@@ -10,3 +10,4 @@ imblearn
 tensorflow
 keras
 tensorboard
+pydentic
