@@ -1,4 +1,4 @@
-experiment_name: "custom_class_weights_model"
+experiment_name: "final_model"
 
 # 1. baseline_model
 baseline_model:
@@ -72,6 +72,64 @@ custom_class_weights_model:
   class_weights: 
     0: 1
     1: 10
+
+# 5. controlled_class_weights_model
+controlled_class_weights_model:
+  input_dim: 29
+  layer_1_neurons: 64
+  layer_2_neurons: 32
+  layer_3_neurons: 16
+  out_layer_neurons: 1
+  layer_2_dropout: 0.2
+  layer_3_dropout: 0.4
+  l2_layer_2: 0.001
+  l2_layer_3: 0.001
+  learning_rate: 0.0001
+  epochs: 100
+  validation_split: 0.2
+  early_stopping:
+    monitor: 'val_pr_auc'        # Matches the Keras compile metric
+    min_delta: 0.001
+    patience: 10
+    verbose: 1
+    mode: 'max'
+    baseline: null               # Correct YAML syntax for None
+    restore_best_weights: true   # Correct YAML syntax for True
+    start_from_epoch: 0
+  class_weights: 
+    0: 1
+    1: 10
+
+# 6. The Final Model
+final_model:
+  input_dim: 29
+  layer_1_neurons: 64
+  layer_2_neurons: 32
+  layer_3_neurons: 16
+  out_layer_neurons: 1
+  layer_2_dropout: 0.2
+  layer_3_dropout: 0.5
+  l2_layer_2: 0.001
+  l2_layer_3: 0.001
+  learning_rate: 0.0001
+  epochs: 100
+  validation_split: 0.2
+  early_stopping:
+    monitor: 'val_pr_auc'        # Matches the Keras compile metric
+    min_delta: 0.001
+    patience: 10
+    verbose: 1
+    mode: 'max'
+    baseline: null               # Correct YAML syntax for None
+    restore_best_weights: true   # Correct YAML syntax for True
+    start_from_epoch: 0
+  class_weights: 
+    0: 1
+    1: 10
+
+
+
+
 
 
   

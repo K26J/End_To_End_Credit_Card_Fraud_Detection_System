@@ -65,20 +65,26 @@ stages:
       size: 122330011
     - path: src/Model.py
       hash: md5
-      md5: 7993a0094ee1e626df00a1c574a85fcc
-      size: 6369
+      md5: b0d3310d79468396da77d7947f7be995
+      size: 10105
     params:
       params.yaml:
-        custom_class_weights_model:
+        experiment_name: final_model
+        final_model:
           input_dim: 29
           layer_1_neurons: 64
           layer_2_neurons: 32
           layer_3_neurons: 16
           out_layer_neurons: 1
+          layer_2_dropout: 0.2
+          layer_3_dropout: 0.5
+          l2_layer_2: 0.001
+          l2_layer_3: 0.001
+          learning_rate: 0.0001
           epochs: 100
           validation_split: 0.2
           early_stopping:
-            monitor: val_recall
+            monitor: val_pr_auc
             min_delta: 0.001
             patience: 10
             verbose: 1
@@ -89,9 +95,8 @@ stages:
           class_weights:
             0: 1
             1: 10
-        experiment_name: custom_class_weights_model
     outs:
-    - path: models/custom_class_weights_model.h5
+    - path: models/final_model.h5
       hash: md5
-      md5: 600b6df39425f36aeaa94a75856a6178
-      size: 91304
+      md5: 87c230cff5eaeafca5c31c11ce71bad1
+      size: 92912

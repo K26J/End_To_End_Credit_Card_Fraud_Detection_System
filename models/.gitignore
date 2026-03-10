@@ -2,3 +2,5 @@
 /generalized_base_model.h5
 /class_weights_model.h5
 /custom_class_weights_model.h5
+/controlled_class_weights_model.h5
+/final_model.h5
