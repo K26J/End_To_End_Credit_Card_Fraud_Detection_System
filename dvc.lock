@@ -65,11 +65,11 @@ stages:
       size: 122330011
     - path: src/Model.py
       hash: md5
-      md5: 011f21a1bef7a123809dc9915d63146f
-      size: 4879
+      md5: 7993a0094ee1e626df00a1c574a85fcc
+      size: 6369
     params:
       params.yaml:
-        class_weights_model:
+        custom_class_weights_model:
           input_dim: 29
           layer_1_neurons: 64
           layer_2_neurons: 32
@@ -87,11 +87,11 @@ stages:
             restore_best_weights: true
             start_from_epoch: 0
           class_weights:
-            0: 0.5008661206
-            1: 289.1434010152
-        experiment_name: class_weights_model
+            0: 1
+            1: 10
+        experiment_name: custom_class_weights_model
     outs:
-    - path: models/class_weights_model.h5
+    - path: models/custom_class_weights_model.h5
       hash: md5
-      md5: 683454d30256a909c69852c91dd22b66
+      md5: 600b6df39425f36aeaa94a75856a6178
       size: 91304
