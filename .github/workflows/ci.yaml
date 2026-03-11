@@ -1,0 +1,57 @@
+# ==========================================
+# MLOps Continuous Integration (CI) Pipeline
+# ==========================================
+# This script acts as the "brain" for GitHub. It tells GitHub to automatically
+# test our code inside a clean environment every time we push to the repository.
+
+# 1. THE DASHBOARD LABEL
+# This is the name that will appear on the GitHub Actions dashboard.
+name: MLOps CI Pipeline
+
+# 2. THE TRIPWIRE (The Trigger)
+# GitHub servers are asleep until this specific event happens.
+on:
+  push:
+    # We only wake the robot up when code is pushed to the 'main' production branch.
+    branches: [ "main" ]
+
+# 3. THE HARDWARE PROVISIONING (The Worker)
+jobs:
+  build-and-test:
+    # We rent a pristine, blank Linux Ubuntu server from GitHub's server farm.
+    # We use Linux because our Docker container natively runs on Linux.
+    runs-on: ubuntu-latest
+
+    # 4. THE ASSEMBLY LINE (The Steps)
+    # These are the chronological instructions the blank Linux server will execute.
+    steps:
+    
+    # Step 4A: Downloading Your Code
+    # We use a pre-written GitHub action to copy all files (app.py, Dockerfile, etc.)
+    # from your repository and place them onto this blank server.
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # Step 4B: Installing the Compiler
+    # We install the exact Python version (3.13) used on your local Windows machine.
+    # This prevents "Environment Drift" and ensures the math remains deterministic.
+    - name: Set up Python 3.13
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+
+    # Step 4C: Installing the Libraries
+    # We run standard terminal commands (the | symbol lets us run multiple lines) 
+    # to install TensorFlow, Scikit-Learn, and FastAPI exactly as pinned.
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Step 4D: The Final Exam (Docker Build)
+    # We command the Linux server to try building the Docker container from scratch.
+    # If there is a typo in app.py or a broken dependency, this step will crash and
+    # GitHub will alert us with a red X, preventing broken code from going live.
+    - name: Test Docker Build
+      run: |
+        docker build -t fraud-detection-api:test .
