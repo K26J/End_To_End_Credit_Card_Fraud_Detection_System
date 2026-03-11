@@ -7,9 +7,13 @@ client = TestClient(app)
 
 def test_health_check():
     """Test 1: Does the server wake up properly?"""
-    response = client.get("/health_check")
+    # 1. Change the door it knocks on to the root URL
+    response = client.get("/") 
+    
     assert response.status_code == 200
-    assert response.json() == {"status": "API is live and models are loaded."}
+    
+    # 2. Change the expected answer to match your exact app.py dictionary
+    assert response.json() == {"Status": "API is live and the model is awake"}
 
 def test_predict_safe_transaction():
     """Test 2: Does the math work? Send a known safe transaction."""
