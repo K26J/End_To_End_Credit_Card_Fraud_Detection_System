@@ -1,6 +1,7 @@
-/baseline_model.h5
-/generalized_base_model.h5
-/class_weights_model.h5
-/custom_class_weights_model.h5
-/controlled_class_weights_model.h5
-/final_model.h5
+# Ignore all files in the models folder by default
+*
+
+# BUT punch a hole to allow these specific files for the CI Pipeline!
+!final_model.h5
+!scaler.pkl
+!.gitignore
