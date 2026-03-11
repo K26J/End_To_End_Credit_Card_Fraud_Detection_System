@@ -48,6 +48,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    # Step 4.5: Run Unit Tests (The Fail Fast step)
+    # We use pytest to run our fake transactions. If this fails, the 
+    # robot stops immediately and Docker is never built.
+    - name: Run Unit Tests
+      run: |
+        pytest test_app.py -v
+
     # Step 4D: The Final Exam (Docker Build)
     # We command the Linux server to try building the Docker container from scratch.
     # If there is a typo in app.py or a broken dependency, this step will crash and
