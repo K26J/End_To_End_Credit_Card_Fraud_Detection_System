@@ -80,7 +80,7 @@ controlled_class_weights_model:
   layer_2_neurons: 32
   layer_3_neurons: 16
   out_layer_neurons: 1
-  layer_2_dropout: 0.2
+  layer_2_dropout: 0.2 
   layer_3_dropout: 0.4
   l2_layer_2: 0.001
   l2_layer_3: 0.001
