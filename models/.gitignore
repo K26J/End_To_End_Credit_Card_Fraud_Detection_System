@@ -1,8 +1,10 @@
-# Ignore all files in the models folder by default
-*
+# 1. Ignore EVERYTHING inside the models folder by default (The Whitelist approach)
+models/*
 
-# BUT punch a hole to allow these specific files for the CI Pipeline!
-!final_model.h5
-!scaler.pkl
-!.gitignore
-/final_model.h5
+# 2. BUT punch a hole to allow the tiny DVC pointers and the folder's internal gitignore
+!models/*.dvc
+!models/.gitignore
+
+# 3. Allow the root DVC pipeline files
+!dvc.lock
+!dvc.yaml
